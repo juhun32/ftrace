@@ -27,6 +27,7 @@ try:
 except Exception as e:
     print(f"Error creating database engine: {e}")
 
+# f1_sessions_2024
 query = "SELECT * FROM f1_sessions_2024"
 df = pd.read_sql(query, con=engine)
 print(df)

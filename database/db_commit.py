@@ -8,6 +8,7 @@ import json
 load_dotenv()
 
 # OpenF1 API
+# f1_sessions_2024
 response = urlopen(
     "https://api.openf1.org/v1/sessions?date_start>=2024-01-01&date_end<=2024-12-31"
 )
@@ -37,6 +38,7 @@ except Exception as e:
     print(f"Error creating database engine: {e}")
 
 # Store DataFrame in DB
+# f1_sessions_2024
 try:
     df.to_sql('f1_sessions_2024', con=engine, if_exists='replace', index=False)
     print("Data stored successfully!")
