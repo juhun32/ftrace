@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+// import DataChart from "./components/DataChart";
+import DataTableSessions from "./components/DataTableSessions";
+import DataTableLaps from "./components/DataTableLaps";
+import InteractiveSessions from "./components/InteractiveSessions";
+import InteractiveLaps from "./components/InteractiveLaps";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Data from PostgreSQL</h1>
+      {/* {<DataChart />} */}
+      {<DataTableSessions />}
+      {/* {<DataTableLaps />} */}
+
+      {<InteractiveSessions />}
+      {<InteractiveLaps />}
     </div>
   );
 }
