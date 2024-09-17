@@ -4,6 +4,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 from urllib.request import urlopen
 import json
+import plotly.express as px
 
 
 class db:
@@ -161,4 +162,7 @@ class db:
 
 
 self = db
-db.db_commit_laps(self)
+# db.db_commit_laps(self)
+
+fig = px.scatter(db.db_fetch_laps(self), x="driver_number", y="lap_duration")
+fig.show()
