@@ -164,5 +164,5 @@ class db:
 self = db
 # db.db_commit_laps(self)
 
-fig = px.scatter(db.db_fetch_laps(self), x="driver_number", y="lap_duration")
-fig.show()
+# fig = px.scatter(db.db_fetch_laps(self), x="driver_number", y="lap_duration")
+# fig.show()
