@@ -14,6 +14,7 @@ const InteractiveSessions = () => {
       try {
         const response = await axios.get('http://localhost:5000/api/data/sessions');
         setData(response.data); // Set the raw data here
+        console.log(data);
       } catch (err) {
         console.error('Error fetching data:', err);
         setError('Failed to load data');

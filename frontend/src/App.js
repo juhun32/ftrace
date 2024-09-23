@@ -3,6 +3,7 @@ import DataTableSessions from "./components/DataTableSessions";
 import DataTableLaps from "./components/DataTableLaps";
 import InteractiveSessions from "./components/InteractiveSessions";
 import InteractiveLaps from "./components/InteractiveLaps";
+import DriverLapTable from "./components/DriverLapTable";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
 
       {<InteractiveSessions />}
       {<InteractiveLaps />}
+
+      {<DriverLapTable />}
     </div>
   );
 }

@@ -1,92 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'chart.js/auto';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const InteractiveLaps = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);  // Initial state is null
   const [error, setError] = useState(null);
-  const [selectedDriver, setSelectedDriver] = useState(""); // To store the selected driver
+  const [selectedDriver, setSelectedDriver] = useState(""); // To store the selected Driver
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/data/laps');
-        setData(response.data); // Set the raw data here
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError('Failed to load data');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    // Fetch data when the component mounts
+    axios.get('http://localhost:5000/api/data/laps')
+      .then((response) => {
+        
+        // console.log(response.data.driver_number);
+        if (response.data) {
+          setData(response.data);
+        } else {
+          setError('No data found');
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setError('Error fetching data');
+      });
   }, []);
 
-  // Handle driver selection
-  const handleDriverChange = (e) => {
-    setSelectedDriver(e.target.value);
-  };
-
-  // Prepare chart data based on the selected driver
-  const getChartData = () => {
-    if (!data || !selectedDriver) {
-      return null; // Return nothing if no driver is selected or data isn't loaded
-    }
-
-    // Filter data for the selected driver and remove NaN lap times
-    const driverData = Object.entries(data.driver_number)
-      .filter(([key, value]) => value === Number(selectedDriver) && !isNaN(data.lap_duration[key]))
-      .map(([key]) => ({
-        lapNumber: key,
-        lapDuration: data.lap_duration[key],
-      }));
-
-    // Return chart data
-    return {
-      labels: driverData.map((d) => `Lap ${d.lapNumber}`), // Lap numbers on the X-axis
-      datasets: [
-        {
-          label: `Lap Times for Driver ${selectedDriver}`,
-          data: driverData.map((d) => d.lapDuration), // Lap durations on Y-axis
-          backgroundColor: 'rgba(75,192,192,0.6)',
-          borderWidth: 1,
-        },
-      ],
-    };
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+  // Handle undefined or null data case
   if (error) {
-    return <div>{error}</div>;
+    return <p>{error}</p>;
   }
 
-  // Get all unique driver numbers for the dropdown
-  const driverOptions = [...new Set(Object.values(data.driver_number))];
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
+  // Safely handle Object.values by ensuring data is not null/undefined
+  const driverNumbers = data.driver_number ? Object.values(data.driver_number) : [];
+  const lapDurations = data.lap_duration ? Object.values(data.lap_duration) : [];
+
+  const chartData = driverNumbers.map((driver, index) => ({
+    driver,
+    lapDuration: lapDurations[index] || null, // Handle potential null values in lapDuration
+  }));
 
   return (
     <div>
-      <h2>Interactive Lap Time Graph</h2>
+      <h1>Interactive Lap Times</h1>
 
-      {/* Dropdown to select the driver */}
-      <select value={selectedDriver} onChange={handleDriverChange}>
-        <option value="">Select Driver</option>
-        {driverOptions.map((driver, index) => (
-          <option key={index} value={driver}>
-            Driver {driver}
-          </option>
-        ))}
-      </select>
-
-      {/* Render the graph if data is available */}
-      {selectedDriver && getChartData() && (
-        <Bar data={getChartData()} />
-      )}
+      <ResponsiveContainer width="100%" height={400}>
+        <LineChart data={chartData}>
+          <Line type="monotone" dataKey="lapDuration" stroke="#8884d8" />
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="driver" label={{ value: 'Driver Number', position: 'insideBottomRight', offset: -5 }} />
+          <YAxis label={{ value: 'Lap Duration (s)', angle: -90, position: 'insideLeft' }} />
+          <Tooltip />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 };
