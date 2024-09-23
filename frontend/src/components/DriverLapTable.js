@@ -50,7 +50,7 @@ const DriverLapTable = () => {
 
   return (
     <div>
-      <h1>Select a Driver to View Lap Times</h1>
+      <h2>Laptime Table</h2>
 
       {/* Dropdown for selecting a driver */}
       <select onChange={(e) => setSelectedDriver(e.target.value)} value={selectedDriver || ''}>
@@ -64,7 +64,7 @@ const DriverLapTable = () => {
 
       {/* Display the table only if a driver is selected */}
       {selectedDriver && filteredData.length > 0 ? (
-        <table border="1" style={{ marginTop: '20px' }}>
+        <table border="1">
           <thead>
             <tr>
               <th>Lap Number</th>

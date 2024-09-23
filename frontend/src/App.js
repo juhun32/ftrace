@@ -9,15 +9,17 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <h1>Data from PostgreSQL</h1>
-      {/* {<DataChart />} */}
-      {<DataTableSessions />}
-      {/* {<DataTableLaps />} */}
+      <h1>F1 Datas</h1>
 
-      {<InteractiveSessions />}
-      {<InteractiveLaps />}
+      <div className="sessions">
+        {<DataTableSessions />}
+        {<InteractiveSessions />}
+      </div>
 
-      {<DriverLapTable />}
+      <div className="laps">
+        {<InteractiveLaps />}
+        {/* {<DriverLapTable />} */}
+      </div>
     </div>
   );
 }

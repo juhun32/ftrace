@@ -48,7 +48,16 @@ def get_data_laps():
     # # Convert to a list of dictionaries for JSON response
     # data = [{"date": row[0], "value": row[1]} for row in rows]
     # return jsonify(data)
-    return jsonify(db.db_fetch_laps(db).to_dict())
+    data_frame = db.db_fetch_laps(db)
+    
+    # Replace NaN values with 0 in the DataFrame
+    # data_frame.fillna(0, inplace=True)
+
+    # delete NaN values
+    data_frame = data_frame.dropna()
+    
+    # Convert the DataFrame to a dictionary and return as JSON
+    return jsonify(data_frame.to_dict())
 
 
 if __name__ == "__main__":

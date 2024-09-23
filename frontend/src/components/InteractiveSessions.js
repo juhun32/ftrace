@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
 import 'chart.js/auto';
 
@@ -88,7 +88,7 @@ const InteractiveSessions = () => {
 
       {/* Render the graph if data is available */}
       {selectedCountry && getChartData() && (
-        <Bar data={getChartData()} />
+        <Pie data={getChartData()} />
       )}
     </div>
   );

@@ -46,7 +46,7 @@ const DataTableSessions = () => {
   return (
     <div>
       <h2>Data Table Sessions</h2>
-      <table>
+      <table border="">
         <thead>
           <tr>
             <th>Country</th>
