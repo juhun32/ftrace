@@ -1,0 +1,22 @@
+
+.intro-container {
+    /* background-image: url('../img/intro.jpg'); */
+    background-size: cover;
+    background-position: center;
+    padding: 1em;
+    /* text-align: center; */
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.intro-title {
+    font-size: 5em;
+    margin: 0;
+    padding: 1rem;
+}
+
+.intro p {
+    font-size: 1.2em;
+    margin: 0;
+    padding: 1em;
+}

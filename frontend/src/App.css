@@ -1,5 +1,6 @@
-.App {
-  text-align: center;
+.container {
+  display: grid;
+  grid-template-columns: 300px auto;
 }
 
 .sessions {

@@ -1,26 +1,55 @@
-// import DataChart from "./components/DataChart";
-import DataTableSessions from "./components/DataTableSessions";
-import DataTableLaps from "./components/DataTableLaps";
-import InteractiveSessions from "./components/InteractiveSessions";
-import InteractiveLaps from "./components/InteractiveLaps";
-import DriverLapTable from "./components/DriverLapTable";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+
+import Intro from "./components/Intro";
+import Menu from "./components/Menu";
+import Drivers from "./components/Drivers";
+import Teams from "./components/Teams";
+import Races from "./components/Races";
+import Latest from "./components/Latest";
+import StandingDriver from "./components/StandingDriver";
+import StandingConstructor from "./components/StandingConstructor";
+import News from "./components/News";
+import Learn from "./components/Learn";
+import About from "./components/About";
+import Contact from "./components/Contact";
+
+import DataChart from "./data/DataChart";
+import DataTableSessions from "./data/DataTableSessions";
+import InteractiveSessions from "./data/InteractiveSessions";
+import InteractiveLaps from "./data/InteractiveLaps";
 
 function App() {
   return (
-    <div className="App">
-      <h1>F1 Datas</h1>
+    <Router>
+      <div className="App">
+        <div className="container">
+          <div className="menu-container">
+            <Menu />
+          </div>
 
-      <div className="sessions">
-        {<DataTableSessions />}
-        {<InteractiveSessions />}
+          <div className="content-container">
+            <Routes>
+              <Route path="/" element={<Intro />} />
+              <Route path="/drivers" element={<Drivers />} />
+              <Route path="/teams" element={<Teams />} />
+              <Route path="/races" element={<Races />} />
+              <Route path="/latest" element={<Latest />} />
+              <Route path="/standing-driver" element={<StandingDriver />} />
+              <Route
+                path="/standing-constructor"
+                element={<StandingConstructor />}
+              />
+              <Route path="/news" element={<News />} />
+              <Route path="/learn" element={<Learn />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </div>
+        </div>
       </div>
-
-      <div className="laps">
-        {<InteractiveLaps />}
-        {/* {<DriverLapTable />} */}
-      </div>
-    </div>
+    </Router>
   );
 }
 
