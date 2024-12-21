@@ -28,7 +28,7 @@ frontendyarn-error.log*
 /*.log
 
 # Backend
-backend/__pycache__/
+backend/__pycache__
 backend/*.pyc
 backend/venv/
 backend/.env
