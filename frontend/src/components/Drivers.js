@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/Drivers.css";
 
 const Drivers = () => {
   const driverDetails = [
@@ -23,17 +24,30 @@ const Drivers = () => {
     { name: "George Russell", wins: 0, races: 50, team: "Williams" },
     { name: "Nicholas Latifi", wins: 0, races: 30, team: "Williams" },
   ];
+
   return (
     <div>
       <h1>F1 Drivers</h1>
-      <ul>
-        {driverDetails.map((driver, index) => (
-          <li key={index}>
-            {driver.name} - Wins: {driver.wins}, Races: {driver.races}, Team:{" "}
-            {driver.team}
-          </li>
-        ))}
-      </ul>
+      <table className="drivers">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Wins</th>
+            <th>Races</th>
+            <th>Team</th>
+          </tr>
+        </thead>
+        <tbody>
+          {driverDetails.map((driver, index) => (
+            <tr key={index}>
+              <td>{driver.name}</td>
+              <td>{driver.wins}</td>
+              <td>{driver.races}</td>
+              <td>{driver.team}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

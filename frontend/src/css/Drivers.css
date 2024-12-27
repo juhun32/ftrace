@@ -1,0 +1,20 @@
+.drivers {
+  width: 98%;
+}
+
+.drivers table {
+  table-layout: auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.drivers th,
+.drivers td {
+  padding: 10px;
+  text-align: left;
+}
+
+.drivers th {
+  background-color: #ececec;
+}
