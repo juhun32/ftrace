@@ -32,7 +32,6 @@ def db_commit():
     print(f"Port: {port}")
     print(f"Database: {database}")
 
-    # Create the engine
     try:
         engine = create_engine(
             f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}"

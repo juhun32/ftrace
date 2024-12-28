@@ -5,24 +5,44 @@
     background-position: center;
     padding: 1em;
     /* text-align: center; */
-    font-family: Arial, sans-serif;
     color: black;
 }
 
 canvas {
     display:flex;
-    height: 70vh !important;
-    width: 100% !important;
+    height: 60vh !important;
+    width: 98% !important;
 }
 
 .intro-title {
+    display: flex;
+    align-items: baseline;
     font-size: 5em;
-    margin: 0;
-    padding: 1rem 0;
+    margin: 0 0;
+    font-family: "Bruno Ace", serif;
+    color: rgb(221, 0, 0);
 }
 
-.intro p {
+.intro-title p {
+    margin: 0 .5em;
+    font-size: .5em;
+    color: black;
+}
+
+.intro-div {
+    width: 98%;
+    height: 3px;
+    background-color: black;
+}
+
+.intro-description {
+    padding: 1em 0;
     font-size: 1.2em;
+    font-weight: 400;
     margin: 0;
-    padding: 1em;
+}
+
+.intro-description p {
+    margin: 0;
+    padding: .5em 0;
 }

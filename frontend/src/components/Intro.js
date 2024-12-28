@@ -7,6 +7,7 @@ import {
   OrbitControls,
   useGLTF,
   ContactShadows,
+  Shadow,
 } from "@react-three/drei";
 
 const modelPath = "/Sf23.gltf";
@@ -19,48 +20,58 @@ const Sf23Model = () => {
 const Intro = () => {
   return (
     <div className="intro-container">
-      <Canvas shadows>
-        <ambientLight intensity={3} />
+      <Canvas shadows camera={{ position: [2, 1, 5], fov: 30 }}>
+        <ambientLight intensity={1} />
         <directionalLight
-          position={[5, 10, 5]}
-          intensity={1}
+          position={[2, 5, 2]}
+          intensity={2}
           castShadow
-          shadow-mapSize={[1024, 1024]}
+          shadow-mapSize={[2048, 2048]}
         />
         <Suspense fallback={null}>
           <Sf23Model />
         </Suspense>
-        <Environment preset="forest" />
+        <Environment preset="city" />
         <ContactShadows
           rotation-x={Math.PI / 2}
           position={[0, 0, 0]}
-          opacity={0.5}
-          width={5}
-          height={5}
-          // blur={0.5}
+          opacity={3}
+          width={6}
+          height={4}
+          blur={0.2}
           far={1}
         />
+
+        <mesh position={[0, -0.01, 0]} rotation-x={-Math.PI / 2}>
+          {/* <planeGeometry args={[2, 5]} /> */}
+          <circleGeometry args={[2.5, 64]} />
+          <meshStandardMaterial color="black" />
+        </mesh>
+
         <OrbitControls
-          maxPolarAngle={Math.PI / 2 - 0.01}
+          maxPolarAngle={Math.PI / 2 - 0.05}
           autoRotate
           autoRotateSpeed={1}
           enableDamping
           dampingFactor={0.1}
         />
       </Canvas>
+      <h1 className="intro-title">
+        Formula 1 <p>Statistics</p>
+      </h1>
+      <div className="intro-div"></div>
 
-      <h1 className="intro-title">Formula 1 Statistics</h1>
-      <p>
-        This is a simple web application that displays Formula 1 data using
-        React and the OpenF1 API.
-      </p>
-      <p>
-        The data is fetched from the OpenF1 API and displayed in a table and
-        chart.
-      </p>
-      <p>
-        Enjoy!
-      </p>
+      <div className="intro-description">
+        <p>
+          This is a simple web application that displays Formula 1 data using
+          React and the OpenF1 API.
+        </p>
+        <p>
+          The data is fetched from the OpenF1 API and displayed in table and
+          chart format.
+        </p>
+        <p>The model above is Carlos Sainz Jr.'s SF23. Enjoy!</p>
+      </div>
     </div>
   );
 };

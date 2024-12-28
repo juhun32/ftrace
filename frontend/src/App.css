@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Montserrat:ital,wght@0,282;1,282&family=Oswald:wght@200..700&display=swap');
+
+body {
+  font-family: "Montserrat", serif;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 5fr;

@@ -1,63 +1,55 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-import psycopg2
+import requests
 from db_control import db
-
-# import jsonpickle
-# import json
 
 app = Flask(__name__)
 CORS(app)
 
 
-# Database connection details
-# def get_db_connection():
-#     conn = psycopg2.connect(
-#         host="localhost",
-#         database="your_database",
-#         user="your_user",
-#         password="your_password",
-#     )
-#     return conn
-
-
 @app.route("/api/data/sessions", methods=["GET"])
 def get_data_sessions():
-    # conn = get_db_connection()
-    # cur = conn.cursor()
-    # cur.execute("SELECT date, value FROM your_table")  # Replace with your actual query
-    # rows = cur.fetchall()
-    # cur.close()
-    # conn.close()
-
-    # # Convert to a list of dictionaries for JSON response
-    # data = [{"date": row[0], "value": row[1]} for row in rows]
-    # return jsonify(data)
     return jsonify(db.db_fetch_sessions(db).to_dict())
 
 
 @app.route("/api/data/laps", methods=["GET"])
 def get_data_laps():
-    # conn = get_db_connection()
-    # cur = conn.cursor()
-    # cur.execute("SELECT date, value FROM your_table")  # Replace with your actual query
-    # rows = cur.fetchall()
-    # cur.close()
-    # conn.close()
-
-    # # Convert to a list of dictionaries for JSON response
-    # data = [{"date": row[0], "value": row[1]} for row in rows]
-    # return jsonify(data)
     data_frame = db.db_fetch_laps(db)
-    
-    # Replace NaN values with 0 in the DataFrame
-    # data_frame.fillna(0, inplace=True)
-
-    # delete NaN values
     data_frame = data_frame.dropna()
-    
+
     # Convert the DataFrame to a dictionary and return as JSON
     return jsonify(data_frame.to_dict())
+
+
+@app.route("/api/data/drivers", methods=["GET"])
+def get_drivers():
+    url = "https://api.openf1.org/v1/drivers?session_key=latest"
+    response = requests.get(url)
+    if response.status_code != 200:
+        return jsonify({"error": "failed to fetch drivers data"}), response.status_code
+
+    data = response.json()
+
+    drivers = [
+        {
+            "id": driver.get("driver_number", "N/A"),
+            "name": driver.get("full_name", "N/A"),
+            "team_name": driver.get("team_name", "N/A"),
+            "team_colour": driver.get("team_colour", "#000000"),
+            "headshot_url": driver.get("headshot_url", ""),
+            "country_code": driver.get("country_code", "N/A"),
+            "team_color": driver.get("team_colour", "N/A"),
+        }
+        for driver in data
+    ]
+
+    team = request.args.get("team")
+    if team:
+        drivers = [
+            driver for driver in drivers if driver["team_name"].lower() == team.lower()
+        ]
+
+    return jsonify(drivers)
 
 
 if __name__ == "__main__":

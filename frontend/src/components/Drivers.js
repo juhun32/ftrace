@@ -1,53 +1,79 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../css/Drivers.css";
 
 const Drivers = () => {
-  const driverDetails = [
-    { name: "Lewis Hamilton", wins: 100, races: 270, team: "Mercedes" },
-    { name: "Max Verstappen", wins: 20, races: 130, team: "Red Bull Racing" },
-    { name: "Valtteri Bottas", wins: 10, races: 160, team: "Mercedes" },
-    { name: "Sergio Perez", wins: 2, races: 200, team: "Red Bull Racing" },
-    { name: "Charles Leclerc", wins: 2, races: 80, team: "Ferrari" },
-    { name: "Carlos Sainz", wins: 0, races: 120, team: "Ferrari" },
-    { name: "Lando Norris", wins: 0, races: 50, team: "McLaren" },
-    { name: "Daniel Ricciardo", wins: 8, races: 190, team: "McLaren" },
-    { name: "Pierre Gasly", wins: 1, races: 70, team: "AlphaTauri" },
-    { name: "Fernando Alonso", wins: 32, races: 310, team: "Alpine" },
-    { name: "Esteban Ocon", wins: 1, races: 80, team: "Alpine" },
-    { name: "Sebastian Vettel", wins: 53, races: 270, team: "Aston Martin" },
-    { name: "Lance Stroll", wins: 0, races: 90, team: "Aston Martin" },
-    { name: "Yuki Tsunoda", wins: 0, races: 20, team: "AlphaTauri" },
-    { name: "Kimi Raikkonen", wins: 21, races: 350, team: "Alfa Romeo" },
-    { name: "Antonio Giovinazzi", wins: 0, races: 50, team: "Alfa Romeo" },
-    { name: "Mick Schumacher", wins: 0, races: 20, team: "Haas" },
-    { name: "Nikita Mazepin", wins: 0, races: 20, team: "Haas" },
-    { name: "George Russell", wins: 0, races: 50, team: "Williams" },
-    { name: "Nicholas Latifi", wins: 0, races: 30, team: "Williams" },
-  ];
+  const [drivers, setDrivers] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState("All");
+
+  useEffect(() => {
+    // Fetch drivers from the Flask backend
+    axios
+      .get("http://localhost:5000/api/data/drivers")
+      .then((response) => {
+        setDrivers(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching drivers:", error);
+      });
+  }, []);
+
+  const filteredDrivers =
+    selectedTeam === "All"
+      ? drivers
+      : drivers.filter((driver) => driver.team_name === selectedTeam);
 
   return (
     <div>
-      <h1>F1 Drivers</h1>
-      <table className="drivers">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Wins</th>
-            <th>Races</th>
-            <th>Team</th>
-          </tr>
-        </thead>
-        <tbody>
-          {driverDetails.map((driver, index) => (
-            <tr key={index}>
-              <td>{driver.name}</td>
-              <td>{driver.wins}</td>
-              <td>{driver.races}</td>
-              <td>{driver.team}</td>
-            </tr>
+      <h1>F1 Drivers, Latest Session</h1>
+
+      <select className="drivers-select"
+        value={selectedTeam}
+        onChange={(e) => setSelectedTeam(e.target.value)}
+      >
+        <option value="All">All Teams</option>
+        {Array.from(new Set(drivers.map((driver) => driver.team_name)))
+          .filter(Boolean)
+          .map((team) => (
+            <option key={team} value={team}>
+              {team}
+            </option>
           ))}
-        </tbody>
-      </table>
+      </select>
+
+      <div className="drivers">
+        <table>
+          <thead>
+            <tr>
+              <th>Picture</th>
+              <th>Number</th>
+              <th>Name</th>
+              <th>Team</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredDrivers.map((driver) => (
+              <tr
+                key={driver.driver_number}
+                style={{ backgroundColor: `#${driver.team_color}` }}
+                
+              >
+                <td>
+                  <img
+                    src={
+                      driver.headshot_url || "https://via.placeholder.com/100"
+                    }
+                    alt={driver.full_name}
+                  />
+                </td>
+                <td>{driver.id}</td>
+                <td>{driver.name}</td>
+                <td>{driver.team_name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
