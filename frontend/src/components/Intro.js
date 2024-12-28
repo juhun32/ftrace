@@ -1,13 +1,11 @@
 import React, { Suspense } from "react";
 import "../css/Intro.css";
-
 import { Canvas } from "@react-three/fiber";
 import {
   Environment,
   OrbitControls,
   useGLTF,
   ContactShadows,
-  Shadow,
 } from "@react-three/drei";
 
 const modelPath = "/Sf23.gltf";
@@ -29,7 +27,7 @@ const Intro = () => {
           shadow-mapSize={[2048, 2048]}
         />
         <Suspense fallback={null}>
-          <Sf23Model />
+          {/* <Sf23Model /> */}
         </Suspense>
         <Environment preset="city" />
         <ContactShadows
@@ -41,13 +39,10 @@ const Intro = () => {
           blur={0.2}
           far={1}
         />
-
         <mesh position={[0, -0.01, 0]} rotation-x={-Math.PI / 2}>
-          {/* <planeGeometry args={[2, 5]} /> */}
           <circleGeometry args={[2.5, 64]} />
           <meshStandardMaterial color="black" />
         </mesh>
-
         <OrbitControls
           maxPolarAngle={Math.PI / 2 - 0.05}
           autoRotate
@@ -56,11 +51,11 @@ const Intro = () => {
           dampingFactor={0.1}
         />
       </Canvas>
+
       <h1 className="intro-title">
         Formula 1 <p>Statistics</p>
       </h1>
       <div className="intro-div"></div>
-
       <div className="intro-description">
         <p>
           This is a simple web application that displays Formula 1 data using
