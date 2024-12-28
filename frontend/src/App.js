@@ -6,7 +6,7 @@ import Intro from "./components/Intro";
 import Menu from "./components/Menu";
 import Drivers from "./components/Drivers";
 import Teams from "./components/Teams";
-import Races from "./components/Races";
+import Next from "./components/Next";
 import Latest from "./components/Latest";
 import StandingDriver from "./components/StandingDriver";
 import StandingConstructor from "./components/StandingConstructor";
@@ -34,7 +34,7 @@ function App() {
               <Route path="/" element={<Intro />} />
               <Route path="/drivers" element={<Drivers />} />
               <Route path="/teams" element={<Teams />} />
-              <Route path="/races" element={<Races />} />
+              <Route path="/next" element={<Next />} />
               <Route path="/latest" element={<Latest />} />
               <Route path="/standing-driver" element={<StandingDriver />} />
               <Route

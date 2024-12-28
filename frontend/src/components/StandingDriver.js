@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/StandingDriver.css";
 
 const StandingDriver = () => {
   // Example driver data for the 2024 season

@@ -4,7 +4,7 @@ const Latest = () => {
     const [latestData, setLatestData] = useState(null);
 
     useEffect(() => {
-        fetch('https://api.example.com/latest')
+        fetch('http://localhost:5000/api/data/latest')
             .then(response => response.json())
             .then(data => setLatestData(data))
             .catch(error => console.error('Error fetching latest data:', error));
@@ -19,7 +19,7 @@ const Latest = () => {
             <h1>Latest Statistics</h1>
             <ul>
                 {latestData.map((item, index) => (
-                    <li key={index}>{item.name}: {item.value}</li>
+                    <li key={index}>{item.circuit_short_name}: {item.meeting_official_name}</li>
                 ))}
             </ul>
         </div>

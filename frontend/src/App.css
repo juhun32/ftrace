@@ -4,6 +4,10 @@ body {
   font-family: "Montserrat", serif;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 5fr;

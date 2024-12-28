@@ -51,6 +51,17 @@ def get_drivers():
 
     return jsonify(drivers)
 
+@app.route("/api/data/latest", methods=["GET"])
+def get_latest_data():
+    url = "https://api.openf1.org/v1/meetings?year=2024"
+    response = requests.get(url)
+    if response.status_code != 200:
+        return jsonify({"error": "failed to fetch latest data"}), response.status_code
+    
+    data = response.json()
+    return jsonify(data)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

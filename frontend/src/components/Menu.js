@@ -22,7 +22,7 @@ const Menu = () => {
         <div className="menu-item">
           <p>Race Information</p>
           <li>
-            <a href="/races">Recent Race Results</a>
+            <a href="/next">Next Session Info</a>
           </li>
           <li>
             <a href="/latest">Latest Session Info</a>
