@@ -6,6 +6,10 @@ from db_control import db
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({"message": "Hello, World!"})
+
 
 @app.route("/api/data/sessions", methods=["GET"])
 def get_data_sessions():
@@ -64,4 +68,4 @@ def get_latest_data():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)

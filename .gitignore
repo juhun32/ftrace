@@ -64,3 +64,18 @@ frontend/npm-debug.log*
 # OS-specific files
 /*.DS_Store
 /*.Thumbs.db
+
+# Docker-specific
+*.log
+*.pid
+*.sock
+
+# Ignore Docker Compose override files
+docker-compose.override.yml
+
+# Ignore Docker build context cache
+**/.dockerignore
+
+# Ignore Docker-related build artifacts
+*.tar
+*.tar.gz

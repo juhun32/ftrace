@@ -10,7 +10,7 @@ body::-webkit-scrollbar {
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 15% 85%;
 }
 
 .sessions {
