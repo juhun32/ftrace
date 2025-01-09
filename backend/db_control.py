@@ -8,14 +8,6 @@ import plotly.express as px
 
 
 class db:
-    load_dotenv()
-
-    username = os.getenv("DB_USERNAME")
-    password = os.getenv("DB_PASSWORD")
-    host = os.getenv("DB_HOST", "db")
-    port = os.getenv("DB_PORT", "5432")
-    database = os.getenv("DB_NAME")
-
     session_meeting_key = {
         "Bahrain Grand Prix": 1229,
         "Saudi Arabian Grand Prix": 1230,
@@ -37,152 +29,61 @@ class db:
         "Singapore Grand Prix": 1246,
     }
 
-    def db_commit_sessions(self):
+    def sessions(self, year=2025):
 
         # OpenF1 API
         # f1_sessions_2024
         response = urlopen(
-            "https://api.openf1.org/v1/sessions?date_start>=2024-01-01&date_end<=2024-12-31"
+            f"https://api.openf1.org/v1/sessions?date_start>={year}-01-01&date_end<={year}-12-31"
         )
         data = json.loads(response.read().decode("utf-8"))
 
         # API Data to DataFrame
         df = pd.DataFrame(data)
+        return df
 
-        # PostgreSQL credentials
-        # print(f"Username: {self.username}")
-        # print(f"Password: {self.password}")
-        # print(f"Host: {self.host}")
-        # print(f"Port: {self.port}")
-        # print(f"Database: {self.database}")
-
-        # Create the engine
-        try:
-            engine = create_engine(
-                f"postgresql+psycopg2://{self.username}:{self.password}@db:{self.port}/{self.database}"
-            )
-            print("Database engine created successfully!")
-        except Exception as e:
-            print(f"Error creating self.database engine: {e}")
-
-        # Store DataFrame in DB
-        # f1_sessions_2024
-        try:
-            df.to_sql("f1_sessions_2024", con=engine, if_exists="replace", index=False)
-            print("Data stored successfully!")
-        except Exception as e:
-            print(f"Error storing data in the self.database: {e}")
+    def drivers(self, driver_number=None, lap_number=None):
 
         # lap informations
         response = urlopen(
-            "https://api.openf1.org/v1/laps?session_key=9161&driver_number=63&lap_number=8"
+            f"https://api.openf1.org/v1/laps?session_key=9161&driver_number={driver_number}&lap_number={lap_number}"
         )
 
         data = json.loads(response.read().decode("utf-8"))
 
         # API Data to DataFrame
         df = pd.DataFrame(data)
-
-        # PostgreSQL credentials
-        # print(f"Username: {self.username}")
-        # print(f"Password: {self.password}")
-        # print(f"Host: {self.host}")
-        # print(f"Port: {self.port}")
-        # print(f"Database: {self.database}")
-
-        # Create the engine
-        try:
-            engine = create_engine(
-                f"postgresql+psycopg2://{self.username}:{self.password}@db:{self.port}/{self.database}"
-            )
-            print("Database engine created successfully!")
-        except Exception as e:
-            print(f"Error creating self.database engine: {e}")
-
-        # Store DataFrame in DB
-        # f1_sessions_2024
-        try:
-            df.to_sql("f1_laps", con=engine, if_exists="replace", index=False)
-            print("Data stored successfully!")
-        except Exception as e:
-            print(f"Error storing data in the self.database: {e}")
-
-    def db_fetch_sessions(self):
-
-        # PostgreSQL credentials
-        # print(f"Username: {self.username}")
-        # print(f"Password: {self.password}")
-        # print(f"Host: {self.host}")
-        # print(f"Port: {self.port}")
-        # print(f"Database: {self.database}")
-
-        # Create the engine
-        try:
-            engine = create_engine(
-                f"postgresql+psycopg2://{self.username}:{self.password}@db:{self.port}/{self.database}"
-            )
-
-            print("Database engine created successfully!")
-        except Exception as e:
-            print(f"Error creating self.database engine: {e}")
-
-        # f1_sessions_2024
-        query = "SELECT * FROM f1_sessions_2024"
-        df = pd.read_sql(query, con=engine)
         return df
 
-    def db_commit_laps(self):
+    def laps(self, session_key):
 
         # lap informations
-        response = urlopen("https://api.openf1.org/v1/laps?session_key=9598")
+        response = urlopen(f"https://api.openf1.org/v1/laps?session_key={session_key}")
 
         data = json.loads(response.read().decode("utf-8"))
 
         # API Data to DataFrame
         df = pd.DataFrame(data)
-
-        # Create the engine
-        try:
-            engine = create_engine(
-                f"postgresql+psycopg2://{self.username}:{self.password}@db:{self.port}/{self.database}"
-            )
-            print("Database engine created successfully!")
-        except Exception as e:
-            print(f"Error creating self.database engine: {e}")
-
-        # Store DataFrame in DB
-        try:
-            df.to_sql("f1_laps", con=engine, if_exists="replace", index=False)
-            print("Data stored successfully!")
-        except Exception as e:
-            print(f"Error storing data in the self.database: {e}")
-
-    def db_fetch_laps(self):
-
-        # PostgreSQL credentials
-        # print(f"Username: {self.username}")
-        # print(f"Password: {self.password}")
-        # print(f"Host: {self.host}")
-        # print(f"Port: {self.port}")
-        # print(f"Database: {self.database}")
-
-        # Create the engine
-        try:
-            engine = create_engine(
-                f"postgresql+psycopg2://{self.username}:{self.password}@db:{self.port}/{self.database}"
-            )
-            print("Database engine created successfully!")
-        except Exception as e:
-            print(f"Error creating self.database engine: {e}")
-
-        # laps
-        query = "SELECT driver_number, lap_duration FROM f1_laps"
-        df = pd.read_sql(query, con=engine)
         return df
 
+    def meetings(self, year=2025):
 
-self = db
-# db.db_commit_laps(self)
+        # meeting informations
+        response = urlopen(f"https://api.openf1.org/v1/meetings?year={year}")
 
-# fig = px.scatter(db.db_fetch_laps(self), x="driver_number", y="lap_duration")
-# fig.show()
+        data = json.loads(response.read().decode("utf-8"))
+
+        # API Data to DataFrame
+        df = pd.DataFrame(data)
+        return df
+
+    def standings(self, year=2025):
+
+        # meeting informations
+        response = urlopen(f"https://api.openf1.org/v1/standings?year={year}")
+
+        data = json.loads(response.read().decode("utf-8"))
+
+        # API Data to DataFrame
+        df = pd.DataFrame(data)
+        return df
