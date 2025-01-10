@@ -36,29 +36,22 @@ def get_sessions():
 
 @app.route("/drivers", methods=["GET"])
 def get_driver_lap():
-    meeting_key = request.args.get("meeting_key", "1234")
-    driver_number = request.args.get("driver_number", "1")
+    session_key = request.args.get("session_key")
+    driver_number = request.args.get("driver_number")
+    lap_number = request.args.get("lap_number")
 
-    if not meeting_key or not driver_number:
+    if not session_key or not driver_number:
         return (
-            jsonify({"error": "Please provide meeting_key, driver_number parameters."}),
+            jsonify(
+                {
+                    "error": "Please provide session_key, driver_number parameters. lap_number is optional."
+                }
+            ),
             400,
         )
 
     try:
-        df = db_instance.drivers(meeting_key, driver_number)
-        return jsonify(df.to_dict(orient="records"))
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/laps", methods=["GET"])
-def get_laps():
-    meeting_key = request.args.get("meeting_key")
-    if not meeting_key:
-        return jsonify({"error": "Please provide a meeting_key parameter."}), 400
-    try:
-        df = db_instance.laps(meeting_key)
+        df = db_instance.drivers(session_key, driver_number, lap_number)
         return jsonify(df.to_dict(orient="records"))
     except Exception as e:
         return jsonify({"error": str(e)}), 500
