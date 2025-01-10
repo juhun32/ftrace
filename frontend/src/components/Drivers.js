@@ -9,7 +9,7 @@ const Drivers = () => {
   useEffect(() => {
     // Fetch drivers from the Flask backend
     axios
-      .get("http://localhost:5000/api/data/drivers")
+      .get("https://flask-api-97721989316.us-east1.run.app/drivers?session_key=9161&driver_number=1")
       .then((response) => {
         setDrivers(response.data);
       })
