@@ -25,7 +25,7 @@ nav ul li a {
   color: rgb(187, 187, 187);
   text-decoration: none;
   display: block;
-  padding: .5rem 1rem;
+  padding: .3rem;
 }
 
 nav ul li a:hover {
@@ -34,7 +34,6 @@ nav ul li a:hover {
 
 .menu-header {
   margin: 0;
-  padding: .5rem;
   font-size: 1.5rem;
 }
 
@@ -44,7 +43,7 @@ nav ul li a:hover {
 }
 
 .menu-item p{
-  padding: 1.5rem .5rem .5rem .5rem;
+  padding: 1.5rem .5rem .5rem 0;
   margin: 0;
   font-size: 1.2rem;
 }

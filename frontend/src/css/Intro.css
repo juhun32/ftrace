@@ -1,48 +1,59 @@
-
 .intro-container {
-    /* background-image: url('../img/intro.jpg'); */
-    background-size: cover;
-    background-position: center;
-    padding: 1rem 3rem;
-    /* text-align: center; */
-    color: black;
+  /* background-image: url('../img/intro.jpg'); */
+  /* background-size: cover; */
+  /* background-position: center; */
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 3rem;
+  /* text-align: center; */
+  color: black;
 }
 
 canvas {
-    display:flex;
-    height: 60vh !important;
-    width: 100% !important;
+  /* display:flex; */
+  height: 20vh !important;
+  width: 100% !important;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
 }
 
 .intro-title {
-    display: flex;
-    align-items: baseline;
-    font-size: 5em;
-    margin: 0 0;
-    font-family: "Bruno Ace", serif;
-    color: rgb(221, 0, 0);
+  display: flex;
+  align-items: baseline;
+  font-size: 5em;
+  margin: 0 0;
+  font-family: "Bruno Ace", serif;
+  color: rgb(221, 0, 0);
 }
 
 .intro-title p {
-    margin: 0 .5em;
-    font-size: .5em;
-    color: black;
+  margin: 0 0.5em;
+  font-size: 0.5em;
+  color: black;
 }
 
 .intro-div {
-    width: 100%;
-    height: 3px;
-    background-color: black;
+  width: 100%;
+  height: 3px;
+  background-color: black;
 }
 
 .intro-description {
-    padding: 1em 0;
-    font-size: 1.2em;
-    font-weight: 400;
-    margin: 0;
+  padding: 1em 0;
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 0;
 }
 
 .intro-description p {
-    margin: 0;
-    padding: .5em 0;
+  margin: 0;
+  padding: 0.5em 0;
 }

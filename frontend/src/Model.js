@@ -36,8 +36,8 @@ const Model = () => {
           blur={0.2}
           far={1}
         />
-        <mesh position={[0, -0.01, 0]} rotation-x={-Math.PI / 2}>
-          <circleGeometry args={[2.5, 64]} />
+        <mesh position={[0, -0.05, 0]}>
+          <cylinderGeometry args={[2.5, 2.5, 0.05, 64]} />
           <meshStandardMaterial color="black" />
         </mesh>
         <OrbitControls
