@@ -14,8 +14,8 @@ const Sf23 = () => {
 
 const Model = () => {
   return (
-    <div style={{ width: "100%", height: "20dvh" }}>
-      <Canvas shadows camera={{ position: [3, 1, 3], fov:40 }}>
+    <div style={{ width: "100dvw", height: "20dvh" }}>
+      <Canvas shadows camera={{ position: [4, 1, 3], fov:30 }}>
         <ambientLight intensity={1} />
         <directionalLight
           position={[2, 5, 2]}
