@@ -14,8 +14,8 @@ const Sf23 = () => {
 
 const Model = () => {
   return (
-    <div>
-      <Canvas shadows camera={{ position: [2, 1, 5], fov: 30 }}>
+    <div style={{ width: "100%", height: "20dvh" }}>
+      <Canvas shadows camera={{ position: [3, 1, 3], fov:40 }}>
         <ambientLight intensity={1} />
         <directionalLight
           position={[2, 5, 2]}
@@ -43,7 +43,7 @@ const Model = () => {
         <OrbitControls
           maxPolarAngle={Math.PI / 2 - 0.05}
           autoRotate
-          autoRotateSpeed={1}
+          autoRotateSpeed={2}
           enableDamping
           dampingFactor={0.1}
         />

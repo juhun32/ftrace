@@ -2,29 +2,30 @@ import React from "react";
 import Model from "../Model";
 import "../css/Intro.css";
 
+import { TbAntennaBars5 } from "react-icons/tb";
+
 const Intro = () => {
   return (
-    <div className="intro-container">
-      <div className="intro-model">
-        <Model />
-      </div>
-
-      <div className="intro-content">
-        <h1 className="intro-title">
-          Formula 1 <p>Statistics</p>
-        </h1>
-        <div className="intro-div"></div>
-        <div className="intro-description">
-          <p>
-            This is a simple web application that displays Formula 1 data using
-            React and the OpenF1 API.
-          </p>
-          <p>
-            The data is fetched from the OpenF1 API and displayed in table and
-            chart format.
-          </p>
-          <p>The model above is Carlos Sainz Jr.'s SF23. Enjoy!</p>
+    <div className="intro-container flex justify-center align-items-center flex-col">
+      <div className="flex justify-center items-end flex-col gap-2 text-right">  
+        <div className="flex flex-row gap-3">
+          <h1 className="text-4xl font-bold text-red-700">F One </h1>
+          <h1 className="flex items-center text-4xl font-bold gap-3">
+            Statistics <TbAntennaBars5 />
+          </h1>
         </div>
+
+<div class="w-full h-1 bg-gray-800 rounded"></div>
+
+        <div className="flex justify-center items-end flex-col">
+          <p className="text-lg mb-2">
+            Explore Formula 1 data with FastF1 API and OpenF1 API, view data in
+            tables and charts.
+          </p>
+        </div>
+      </div>
+      <div className="">
+        <Model />
       </div>
     </div>
   );

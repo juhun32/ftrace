@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Intro from "./components/Intro";
-import Menu from "./components/Menu";
+import Header from "./components/Header";
 import Drivers from "./components/Drivers";
 import Teams from "./components/Teams";
 import Next from "./components/Next";
@@ -24,9 +24,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div className="container">
-          <div className="menu-container">
-            <Menu />
+        <div className="header-container">
+          <div className="header">
+            <Header />
           </div>
 
           <div className="content-container">
