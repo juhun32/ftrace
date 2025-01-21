@@ -24,7 +24,7 @@ const Next = () => {
       : session.filter((year) => year.year === selectedYear);
 
   return (
-    <div>
+    <div class="flex flex-col justify-center items-center h-screen p-10">
       <h1>F1 session, Latest Session</h1>
 
       <select className="session-select"

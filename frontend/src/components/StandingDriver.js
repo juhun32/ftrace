@@ -147,7 +147,7 @@ const StandingDriver = () => {
   ];
 
   return (
-    <div className="driver-standings">
+    <div className="driver-standings flex flex-col justify-center items-center h-screen p-10">
       {f1Drivers2024.map((driver, index) => (
         <div key={index} className="driver-standing">
           <h2>{driver.name}</h2>

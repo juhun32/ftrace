@@ -4,6 +4,8 @@ import "./App.css";
 
 import Intro from "./components/Intro";
 import Header from "./components/Header";
+
+import Info from "./components/Info";
 import Drivers from "./components/Drivers";
 import Teams from "./components/Teams";
 import Next from "./components/Next";
@@ -32,19 +34,20 @@ function App() {
           <div className="content-container">
             <Routes>
               <Route path="/" element={<Intro />} />
-              <Route path="/drivers" element={<Drivers />} />
-              <Route path="/teams" element={<Teams />} />
-              <Route path="/next" element={<Next />} />
-              <Route path="/latest" element={<Latest />} />
-              <Route path="/standing-driver" element={<StandingDriver />} />
+              <Route path="/info" element={<Info />} />
+              <Route path="/info/drivers" element={<Drivers />} />
+              <Route path="/info/teams" element={<Teams />} />
+              <Route path="/sessions" element={<Next />} />
+              <Route path="/sessions/latest" element={<Latest />} />
+              <Route path="/championship" element={<StandingDriver />} />
               <Route
-                path="/standing-constructor"
+                path="/championship/constructor"
                 element={<StandingConstructor />}
               />
-              <Route path="/news" element={<News />} />
+              <Route path="/others" element={<News />} />
               <Route path="/learn" element={<Learn />} />
               <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/about/contact" element={<Contact />} />
             </Routes>
           </div>
         </div>
