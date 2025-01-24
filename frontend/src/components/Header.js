@@ -1,8 +1,8 @@
 import React from "react";
-import "../css/Menu.css";
+// import "../css/Menu.css";
 
-import home from "../img/home.png";
-import { useEffect } from "react";
+// import home from "../img/home.png";
+// import { useEffect } from "react";
 
 const Menu = () => {
   return (
