@@ -1,12 +1,12 @@
 import React from "react";
 import Model from "../Model";
-import "../css/Intro.css";
+// import "../css/Intro.css";
 
 import { TbAntennaBars5 } from "react-icons/tb";
 
 const Intro = () => {
   return (
-    <div className="intro-container flex justify-center align-items-center flex-col">
+    <div className="intro-container flex justify-center items-center flex-col h-[calc(100vh-6rem)]">
       <div className="flex justify-center items-end flex-col gap-2 text-right">
         <div className="flex flex-row gap-3">
           <h1 className="text-4xl font-bold text-red-700">FO </h1>

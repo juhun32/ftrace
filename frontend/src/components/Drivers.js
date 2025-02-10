@@ -25,7 +25,7 @@ const Drivers = () => {
 
   return (
     <div>
-      <h1>F1 Drivers, Latest Session</h1>
+      {/* <h1>F1 Drivers, Latest Session</h1> */}
 
       <select className="drivers-select"
         value={selectedTeam}

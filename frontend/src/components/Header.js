@@ -10,7 +10,7 @@ const Menu = () => {
 
     // </header>
 
-    <header className="fixed w-full text-base font-bold flex justify-between items-center px-10 py-7 bg-white shadow-md">
+    <header className="w-full text-base font-bold flex justify-between items-center px-10 py-7 bg-white shadow-md">
       <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
         <a href="/" class="px-1">HOME</a>
       </div>
