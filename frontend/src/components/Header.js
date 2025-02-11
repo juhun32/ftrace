@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-// import "../css/Menu.css";
+import "../css/Header.css";
 
 // import home from "../img/home.png";
 // import { useEffect } from "react";
@@ -21,41 +21,27 @@ const Menu = () => {
   }, []);
 
   return (
-    <header className="w-full text-base font-bold flex justify-between items-center px-10 py-5 bg-white shadow-md">
-      <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
-        <a href="/" class="px-1">
-          HOME
+    <header className="w-full text-sm font-medium flex justify-between items-center px-10 py-5 bg-white shadow-md">
+      <div class="ftrace text-black text-lg font-bold">
+        <a href="/" className="flex text-red-700">
+          f<p className="text-gray-900">trace</p>
         </a>
       </div>
       <div class="flex gap-10">
         <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
-          <a href="/info" class="px-1">
-            DRIVER / TEAM
-          </a>
+          <a href="/championship">CHAMPIONSHIP</a>
         </div>
 
         <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
-          <a href="/championship" class="px-1">
-            CHAMPIONSHIP
-          </a>
+          <a href="/sessions">SESSIONS</a>
         </div>
 
         <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
-          <a href="/sessions" class="px-1">
-            SESSIONS
-          </a>
+          <a href="/learn">LEARN</a>
         </div>
 
         <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
-          <a href="/learn" class="px-1">
-            LEARN
-          </a>
-        </div>
-
-        <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
-          <a href="/others" class="px-1">
-            NEWS
-          </a>
+          <a href="/others">NEWS</a>
         </div>
 
         <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">

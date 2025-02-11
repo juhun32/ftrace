@@ -10,10 +10,6 @@ body {
   width: 100vw;
 }
 
-.content-container {
-  /* margin-top: 82px; */
-}
-
 body::-webkit-scrollbar {
   display: none;
 }

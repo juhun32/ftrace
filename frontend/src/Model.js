@@ -8,14 +8,18 @@ import {
 } from "@react-three/drei";
 
 const Sf23 = () => {
-  const { scene } = useGLTF('/Sf23.gltf');
+  const { scene } = useGLTF("/Sf23.gltf");
   return <primitive object={scene} />;
 };
 
 const Model = () => {
   return (
-    <div style={{ width: "100dvw", height: "20dvh" }}>
-      <Canvas shadows camera={{ position: [4, 1, 3], fov:30 }}>
+    <div style={{ width: "50dvw", height: "40dvh" }}>
+      <Canvas
+        className="rounded-xl"
+        shadows
+        camera={{ position: [7, 3, 7], fov: 30 }}
+      >
         <ambientLight intensity={1} />
         <directionalLight
           position={[2, 5, 2]}
