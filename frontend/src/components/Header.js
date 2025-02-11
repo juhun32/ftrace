@@ -55,7 +55,7 @@ const Menu = () => {
         </div>
       ) : (
         <div class="text-black hover:text-red-700 border-transparent border-b-2 hover:border-black hover:border-b-2">
-          <a href="/about">LOGIN</a>
+          <a href="/login">LOGIN</a>
         </div>
       )}
     </header>

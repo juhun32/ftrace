@@ -11,7 +11,7 @@ const StandingConstructor = () => {
     }, []);
 
     return (
-        <div>
+        <div className='flex flex-col justify-center items-center p-10'>
             <h2>Constructor Standings</h2>
             <table>
                 <thead>
