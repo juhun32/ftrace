@@ -24,9 +24,12 @@ const Intro = () => {
         </div>
       </div>
       <div className="flex justify-center items-center">
-        <p>
-          login box
-        </p>
+        <a
+          className="border-[2px] border-gray-900 rounded-md px-2 py-1 text-base hover:bg-gray-900 hover:text-white"
+          href="https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=token&scope=profile email"
+        >
+          Login with Google
+        </a>
       </div>
       <div className="rounded-lg">
         <Model />
