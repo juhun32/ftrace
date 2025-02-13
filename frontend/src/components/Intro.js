@@ -2,6 +2,7 @@ import React from "react";
 import Model from "../Model";
 
 import { TbAntennaBars5 } from "react-icons/tb";
+import { AiOutlineGoogle } from "react-icons/ai";
 
 const Intro = () => {
   return (
@@ -14,7 +15,7 @@ const Intro = () => {
           </h1>
         </div>
 
-        <div class="w-full h-[2px] bg-gray-900 rounded"></div>
+        <div class="w-full h-[2px] bg-stone-900 rounded"></div>
 
         <div className="flex justify-center items-end flex-col">
           <p className="text-lg mb-2">
@@ -25,10 +26,10 @@ const Intro = () => {
       </div>
       <div className="flex justify-center items-center">
         <a
-          className="border-[2px] border-gray-900 rounded-md px-2 py-1 text-base hover:bg-gray-900 hover:text-white"
+          className="flex justify-center items-center gap-2 border-[2px] border-stone-700 rounded-md px-3 py-1 text-base hover:bg-stone-700 hover:text-white"
           href="https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=token&scope=profile email"
         >
-          Login with Google
+          <AiOutlineGoogle />Sign in with Google
         </a>
       </div>
       <div className="rounded-lg">

@@ -9,7 +9,8 @@ const Drivers = () => {
   useEffect(() => {
     // Fetch drivers from the Flask backend
     axios
-      .get("https://flask-api-97721989316.us-east1.run.app/drivers?session_key=9161&driver_number=1")
+      // .get("https://flask-api-97721989316.us-east1.run.app/drivers?session_key=9161&driver_number=1")
+      .get("https://api.openf1.org/v1/drivers?session_key=latest")
       .then((response) => {
         setDrivers(response.data);
       })
@@ -55,7 +56,7 @@ const Drivers = () => {
             {filteredDrivers.map((driver) => (
               <tr
                 key={driver.driver_number}
-                style={{ backgroundColor: `#${driver.team_color}` }}
+                style={{ backgroundColor: `#${driver.team_colour}` }}
                 
               >
                 <td>
@@ -66,8 +67,8 @@ const Drivers = () => {
                     alt={driver.full_name}
                   />
                 </td>
-                <td>{driver.id}</td>
-                <td>{driver.name}</td>
+                <td>{driver.driver_number}</td>
+                <td>{driver.full_name}</td>
                 <td>{driver.team_name}</td>
               </tr>
             ))}
