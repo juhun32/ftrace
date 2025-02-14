@@ -14,9 +14,16 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-.vertical-divider {
+.vertical-divider- {
   width: 1px;
   height: 100%;
   /* background: black; */
   border: 1px solid black;
+}
+
+.vertical-divider-darkmode {
+  width: 1px;
+  height: 100%;
+  /* background: black; */
+  border: 1px solid #e0e0e0;
 }

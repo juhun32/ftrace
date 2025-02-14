@@ -5,7 +5,7 @@ import Teams from "./Teams";
 
 const Learn = () => {
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center p-10">
       <h1>Learn About Formula 1</h1>
       <p>
         Welcome to the world of Formula 1 racing! Here you can learn about the
