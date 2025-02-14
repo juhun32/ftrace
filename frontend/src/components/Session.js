@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import Latest from "./Latest";
+
 const Session = () => {
   const [session, setSession] = useState([]);
-  const [selectedYear, setYear] = useState("2023");
+  const [selectedYear, setYear] = useState("Available Options");
 
   useEffect(() => {
     // Fetch session from the Flask backend
@@ -19,6 +21,8 @@ const Session = () => {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-[calc(100vh-5rem)] p-10">
+      <Latest />
+
       <h1>F1 session, Latest Session</h1>
 
       <select
@@ -26,9 +30,10 @@ const Session = () => {
         value={selectedYear}
         onChange={(e) => setYear(e.target.value)}
       >
+        <option value="Available Options">Available Options</option>
         <option value="2023">2023</option>
         <option value="2024">2024</option>
-        <option value="2025">2025</option>
+        {/* <option value="2025">2025</option> */}
       </select>
 
       <div className="flex-row justify-center items-center">
@@ -76,6 +81,7 @@ const Session = () => {
           </tbody>
         </table>
       </div>
+      LIVE SESSION TABLE!!!!!
     </div>
   );
 };

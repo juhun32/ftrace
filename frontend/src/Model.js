@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   Environment,
@@ -7,12 +7,15 @@ import {
   ContactShadows,
 } from "@react-three/drei";
 
+// Preload the model
+useGLTF.preload("/Sf23.gltf");
+
 const Sf23 = () => {
   const { scene } = useGLTF("/Sf23.gltf");
-  return <primitive object={scene} />;
+  return useMemo(() => <primitive object={scene} />, [scene]);
 };
 
-const Model = () => {
+const Model = React.memo(() => {
   return (
     <div style={{ width: "50dvw", height: "40dvh" }}>
       <Canvas
@@ -41,7 +44,7 @@ const Model = () => {
           far={1}
         />
         <mesh position={[0, -0.05, 0]}>
-          <cylinderGeometry args={[2.5, 2.5, 0.05, 64]} />
+          <cylinderGeometry args={[2.5, 2.5, 0.05, 50]} />
           <meshStandardMaterial color="black" />
         </mesh>
         <OrbitControls
@@ -54,6 +57,6 @@ const Model = () => {
       </Canvas>
     </div>
   );
-};
+});
 
 export default Model;

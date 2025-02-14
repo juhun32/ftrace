@@ -28,7 +28,9 @@ const Menu = () => {
 
   // Dark mode state
   const [isDarkMode, setIsDarkMode] = useContext(DarkModeContext);
-  {console.log("darkmode: " + isDarkMode)}
+  {
+    console.log("darkmode: " + isDarkMode);
+  }
 
   useEffect(() => {
     if (isDarkMode) {
@@ -52,7 +54,7 @@ const Menu = () => {
       </div>
       <div className="flex gap-10">
         <div className="text-black hover:text-red-700 border-transparent border-b-[1px] hover:border-black hover:border-b-[1px] dark:text-stone-100 dark:hover:border-stone-100">
-          <a href="/championship">CHAMPIONSHIP</a>
+          <a href="/others">ANALYSIS</a>
         </div>
 
         <div className="text-black hover:text-red-700 border-transparent border-b-[1px] hover:border-black hover:border-b-[1px] dark:text-stone-100 dark:hover:border-stone-100">
@@ -60,11 +62,11 @@ const Menu = () => {
         </div>
 
         <div className="text-black hover:text-red-700 border-transparent border-b-[1px] hover:border-black hover:border-b-[1px] dark:text-stone-100 dark:hover:border-stone-100">
-          <a href="/learn">LEARN</a>
+          <a href="/championship">CHAMPIONSHIP</a>
         </div>
 
         <div className="text-black hover:text-red-700 border-transparent border-b-[1px] hover:border-black hover:border-b-[1px] dark:text-stone-100 dark:hover:border-stone-100">
-          <a href="/others">NEWS</a>
+          <a href="/learn">LEARN</a>
         </div>
 
         <div className="text-black hover:text-red-700 border-transparent border-b-[1px] hover:border-black hover:border-b-[1px] dark:text-stone-100 dark:hover:border-stone-100">
